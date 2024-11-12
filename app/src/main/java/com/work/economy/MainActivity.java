@@ -26,24 +26,29 @@ public class MainActivity extends AppCompatActivity {
         inputValue = findViewById(R.id.inputValue);
         outputValue = findViewById(R.id.outputValue);
         inputButton = findViewById(R.id.inputButton);
+        nameValue = findViewById(R.id.nameValue);
 
         //Botão de envio de valor
         inputButton.setOnClickListener(new View.OnClickListener() {
             @Override
 
             public void onClick(View view) {
+
                 String input_Value = inputValue.getText().toString();
                 String output_Value = outputValue.getText().toString();
+                String name_Value = nameValue.getText().toString();
 
                 // BUG: Se os dois valores forem ("") ou seja sem nenhum  o programa dar erro
-
                 if(output_Value.equals("")) {
-                    pinggy.accountEntry(Double.parseDouble(input_Value));
+                    pinggy.accountEntry(name_Value, Double.parseDouble(input_Value));
                 }else if(input_Value.equals("")){
-                    pinggy.accountExit(Double.parseDouble(output_Value));
+                    pinggy.accountExit(name_Value, Double.parseDouble(output_Value));
                 }
 
-
+                //Limpar os campos depois de enviar as informações
+                nameValue.setText("");
+                inputValue.setText("");
+                outputValue.setText("");
             }
         });
     }

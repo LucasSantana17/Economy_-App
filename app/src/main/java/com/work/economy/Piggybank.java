@@ -8,6 +8,7 @@ public class Piggybank {
     private double userAccount = 0;
     private double inputValue;
     private double outputValue;
+    private String nameValue;
 
     public Piggybank(){
     }
@@ -35,14 +36,14 @@ public class Piggybank {
 
     //  # A intenção é que apartir desse método aconteça uma chamada para o banco de dados
 
-    public void accountEntry(double inputValue){ // Metodo de entrada na conta
+    public void accountEntry(String nameValue, double inputValue){ // Metodo de entrada na conta
         this.userAccount = userAccount + inputValue;
-        Log.d(TAG,"valor adicionado na conta: "+ inputValue+" Valor atual: "+ getUserAccount());
+        Log.d(TAG,"valor adicionado referente a "+nameValue+": "+ inputValue+" Valor atual: "+ getUserAccount());
     }
 
-    public void accountExit(double outputValue){ // Metodo de saida da conta
+    public void accountExit(String nameValue, double outputValue){ // Metodo de saida da conta
         this.userAccount = userAccount - outputValue;
-        Log.d(TAG,"valor retirado da conta: "+ outputValue + " Valor atual: "+getUserAccount());
+        this.nameValue = nameValue;
+        Log.d(TAG,"valor retirado referente a "+nameValue+": "+ outputValue + " Valor atual: "+getUserAccount());
     }
-
 }

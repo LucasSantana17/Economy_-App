@@ -22,6 +22,18 @@
         tools:ignore="MissingConstraints"></TextView>
 
     <EditText
+        android:id="@+id/nameValue"
+        android:layout_width="250dp"
+        android:layout_height="48dp"
+        android:hint="Nome"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.099"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.225"></EditText>
+
+    <EditText
         android:id="@+id/inputValue"
         android:layout_width="250dp"
         android:layout_height="48dp"
@@ -33,7 +45,7 @@
         app:layout_constraintHorizontal_bias="0.099"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.247"></EditText>
+        app:layout_constraintVertical_bias="0.341"></EditText>
 
     <EditText
         android:id="@+id/outputValue"
@@ -47,7 +59,7 @@
         app:layout_constraintHorizontal_bias="0.099"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.38"></EditText>
+        app:layout_constraintVertical_bias="0.456"></EditText>
 
     <Button
         android:id="@+id/inputButton"
