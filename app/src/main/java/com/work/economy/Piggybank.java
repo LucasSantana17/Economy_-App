@@ -13,8 +13,12 @@ public class Piggybank {
     public Piggybank(){
     }
 
-    public double getUserAccount(){
+    public double getUserAccount() {
         return userAccount;
+    }
+
+    public void setUserAccount(double userAccount) {
+        this.userAccount = userAccount;
     }
 
     public double getInputValue() {
@@ -33,6 +37,13 @@ public class Piggybank {
         this.outputValue = outputValue;
     }
 
+    public String getNameValue() {
+        return nameValue;
+    }
+
+    public void setNameValue(String nameValue) {
+        this.nameValue = nameValue;
+    }
 
     //  # A intenção é que apartir desse método aconteça uma chamada para o banco de dados
 
@@ -46,4 +57,5 @@ public class Piggybank {
         this.nameValue = nameValue;
         Log.d(TAG,"valor retirado referente a "+nameValue+": "+ outputValue + " Valor atual: "+getUserAccount());
     }
+
 }

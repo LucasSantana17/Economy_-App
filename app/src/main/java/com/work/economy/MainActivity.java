@@ -1,4 +1,5 @@
 package com.work.economy;
+
 import com.work.economy.Piggybank;
 import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,12 +7,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import com.work.economy.Databasepiggy;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
 
     Piggybank pinggy = new Piggybank();
+    Databasepiggy economyDataBase = new Databasepiggy(this);
 
     private EditText inputValue;
     private EditText outputValue;
@@ -44,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
                 }else if(input_Value.equals("")){
                     pinggy.accountExit(name_Value, Double.parseDouble(output_Value));
                 }
+
+                economyDataBase.insert("movement", pinggy);
 
                 //Limpar os campos depois de enviar as informações
                 nameValue.setText("");
