@@ -7,6 +7,7 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/textView2"
         android:layout_width="300dp"
         android:layout_height="95dp"
         android:fontFamily="sans-serif-light"
@@ -22,7 +23,7 @@
         tools:ignore="MissingConstraints"></TextView>
 
     <EditText
-        android:id="@+id/nameValue"
+        android:id="@+id/typeValue"
         android:layout_width="250dp"
         android:layout_height="48dp"
         android:hint="Nome"
@@ -47,6 +48,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.341"></EditText>
 
+
     <EditText
         android:id="@+id/outputValue"
         android:layout_width="250dp"
@@ -61,6 +63,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.456"></EditText>
 
+
     <Button
         android:id="@+id/inputButton"
         android:layout_width="100dp"
@@ -72,7 +75,20 @@
         app:layout_constraintHorizontal_bias="0.051"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.914"></Button>
+        app:layout_constraintVertical_bias="0.653"></Button>
+
+    <Button
+        android:id="@+id/btn_consultation"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:hint="Consulta"
+        android:textColorHint="#F8F6F6"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.771"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.863"></Button>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,6 @@
 package com.work.economy;
 import android.util.Log;
-
+import com.work.economy.Databasepiggy;
 public class Piggybank {
 
     private static final String TAG = "Piggybank";
@@ -8,7 +8,7 @@ public class Piggybank {
     private double userAccount = 0;
     private double inputValue;
     private double outputValue;
-    private String nameValue;
+    private String typeValue;
 
     public Piggybank(){
     }
@@ -37,25 +37,31 @@ public class Piggybank {
         this.outputValue = outputValue;
     }
 
-    public String getNameValue() {
-        return nameValue;
+    public String getTypeValue() {
+        return typeValue;
     }
 
-    public void setNameValue(String nameValue) {
-        this.nameValue = nameValue;
+    public void setTypeValue(String typeValue) {
+        this.typeValue = typeValue;
     }
+
 
     //  # A intenção é que apartir desse método aconteça uma chamada para o banco de dados
-
     public void accountEntry(String nameValue, double inputValue){ // Metodo de entrada na conta
         this.userAccount = userAccount + inputValue;
+
         Log.d(TAG,"valor adicionado referente a "+nameValue+": "+ inputValue+" Valor atual: "+ getUserAccount());
     }
 
     public void accountExit(String nameValue, double outputValue){ // Metodo de saida da conta
         this.userAccount = userAccount - outputValue;
-        this.nameValue = nameValue;
+        this.typeValue = nameValue;
         Log.d(TAG,"valor retirado referente a "+nameValue+": "+ outputValue + " Valor atual: "+getUserAccount());
     }
+
+
+
+    // Criar uma forma de verificar se o valor é uma adição na conta ou uma subtração
+
 
 }

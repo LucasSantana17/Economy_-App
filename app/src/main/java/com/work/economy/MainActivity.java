@@ -1,6 +1,8 @@
 package com.work.economy;
 
 import com.work.economy.Piggybank;
+
+import android.content.Intent;
 import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,8 +20,9 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText inputValue;
     private EditText outputValue;
-    private EditText nameValue;
+    private EditText typeValue;
     private Button inputButton;
+    private Button btnConsultation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +32,10 @@ public class MainActivity extends AppCompatActivity {
         inputValue = findViewById(R.id.inputValue);
         outputValue = findViewById(R.id.outputValue);
         inputButton = findViewById(R.id.inputButton);
-        nameValue = findViewById(R.id.nameValue);
+        typeValue = findViewById(R.id.typeValue);
+
+        btnConsultation = findViewById(R.id.btn_consultation);
+
 
         //Botão de envio de valor
         inputButton.setOnClickListener(new View.OnClickListener() {
@@ -39,21 +45,35 @@ public class MainActivity extends AppCompatActivity {
 
                 String input_Value = inputValue.getText().toString();
                 String output_Value = outputValue.getText().toString();
-                String name_Value = nameValue.getText().toString();
+                String type_Value = typeValue.getText().toString();
 
                 // BUG: Se os dois valores forem ("") ou seja sem nenhum  o programa dar erro
+                // Consertar essa verificação
                 if(output_Value.equals("")) {
-                    pinggy.accountEntry(name_Value, Double.parseDouble(input_Value));
+                    pinggy.accountEntry(type_Value, Double.parseDouble(input_Value));
                 }else if(input_Value.equals("")){
-                    pinggy.accountExit(name_Value, Double.parseDouble(output_Value));
+                    pinggy.accountExit(type_Value, Double.parseDouble(output_Value));
                 }
 
-                economyDataBase.insert("movement", pinggy);
+
+                pinggy.setTypeValue(type_Value);
+                pinggy.setInputValue(Double.parseDouble(input_Value));
+
+                economyDataBase.insert(pinggy);
+                economyDataBase.displayData();
 
                 //Limpar os campos depois de enviar as informações
-                nameValue.setText("");
+                typeValue.setText("");
                 inputValue.setText("");
                 outputValue.setText("");
+            }
+        });
+
+        btnConsultation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, activity_consultation.class);
+                startActivity(intent);
             }
         });
     }
