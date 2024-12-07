@@ -20,10 +20,11 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText inputValue;
     private EditText outputValue;
-    private EditText typeValue;
+    private EditText nameValue;
     private Button inputButton;
     private Button btnConsultation;
 
+    private boolean typeValue;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,10 +33,9 @@ public class MainActivity extends AppCompatActivity {
         inputValue = findViewById(R.id.inputValue);
         outputValue = findViewById(R.id.outputValue);
         inputButton = findViewById(R.id.inputButton);
-        typeValue = findViewById(R.id.typeValue);
+        nameValue = findViewById(R.id.nameValue);
 
         btnConsultation = findViewById(R.id.btn_consultation);
-
 
         //Botão de envio de valor
         inputButton.setOnClickListener(new View.OnClickListener() {
@@ -45,25 +45,28 @@ public class MainActivity extends AppCompatActivity {
 
                 String input_Value = inputValue.getText().toString();
                 String output_Value = outputValue.getText().toString();
-                String type_Value = typeValue.getText().toString();
+                String name_value = nameValue.getText().toString();
 
                 // BUG: Se os dois valores forem ("") ou seja sem nenhum  o programa dar erro
                 // Consertar essa verificação
                 if(output_Value.equals("")) {
-                    pinggy.accountEntry(type_Value, Double.parseDouble(input_Value));
+
+                    pinggy.accountEntry(name_value, Double.parseDouble(input_Value), typeValue = true );
+                    pinggy.setNameValue(name_value);
+                    pinggy.setInputValue(Double.parseDouble(input_Value));
+                    pinggy.setTypeValue(typeValue = true);
+
                 }else if(input_Value.equals("")){
-                    pinggy.accountExit(type_Value, Double.parseDouble(output_Value));
+                    pinggy.accountExit(name_value, Double.parseDouble(output_Value));
+
                 }
-
-
-                pinggy.setTypeValue(type_Value);
-                pinggy.setInputValue(Double.parseDouble(input_Value));
+                    pinggy.setInputValue(Double.parseDouble(input_Value));
 
                 economyDataBase.insert(pinggy);
                 economyDataBase.displayData();
 
                 //Limpar os campos depois de enviar as informações
-                typeValue.setText("");
+                nameValue.setText("");
                 inputValue.setText("");
                 outputValue.setText("");
             }

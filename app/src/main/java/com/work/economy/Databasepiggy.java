@@ -13,14 +13,15 @@ public class Databasepiggy extends SQLiteOpenHelper {
 
     private static final String TAG = "database";
     private static final String DB_NAME = "Economy";
-    private static final int DB_VERSION = 1;
+    private static final int DB_VERSION = 2;
 
 
     private static final String TABLE_MOVEMENT = "CREATE TABLE IF NOT EXISTS movement (" +
             "id_movement INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+            "name_movement TEXT, " +
             "value_movement REAL NOT NULL, " +
             "date_movement DATETIME DEFAULT CURRENT_TIMESTAMP, " +
-            "type_movement TEXT NOT NULL" +
+            "type_movement INTEGER NOT NULL" +
             ")";
 
     private static final String TABLE_PIGGYBANK = "CREATE TABLE IF NOT EXISTS piggybank (" +
@@ -30,7 +31,6 @@ public class Databasepiggy extends SQLiteOpenHelper {
             "FOREIGN KEY (id_movement) REFERENCES movement(id_movement)" +
             ")";
 
-
     public Databasepiggy(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
@@ -38,7 +38,6 @@ public class Databasepiggy extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-
         sqLiteDatabase.execSQL(TABLE_MOVEMENT);
         sqLiteDatabase.execSQL(TABLE_PIGGYBANK);
     }
@@ -52,18 +51,23 @@ public class Databasepiggy extends SQLiteOpenHelper {
     }
 
     public boolean insert(Piggybank piggy){
+
         SQLiteDatabase database = getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        values.put("type_movement", piggy.getTypeValue());
+        Log.d(TAG,"Movimetações: "+
+                "| Nome = "+piggy.getNameValue()+
+                "| Valor = "+piggy.getInputValue()+
+                "| Tipo = "+piggy.getTypeValue()+" |");
+
+        values.put("name_movement", piggy.getNameValue());
         values.put("value_movement", piggy.getInputValue());
+        values.put("type_movement", piggy.getTypeValue());
 
         long result = database.insert("movement", null, values);
 
         return result > 0;
     }
-
-
 
     public String displayData() {
 
@@ -79,12 +83,19 @@ public class Databasepiggy extends SQLiteOpenHelper {
                     // Obter os valores das colunas com verificação do índice
                     int idColumnIndex = cursor.getColumnIndex("id_movement");
                     int valueColumnIndex = cursor.getColumnIndex("value_movement");
-                    int nameColumnIndex = cursor.getColumnIndex("type_movement");
+                    int typeColumnIndex = cursor.getColumnIndex("type_movement");
                     int dateColumnIndex = cursor.getColumnIndex("date_movement");
+                    int nameColumnIndex = cursor.getColumnIndex("name_movement");
 
                     if(idColumnIndex != -1){
                         int id = cursor.getInt(idColumnIndex);
                         resultString.append("ID: ").append(id).append("\n");
+                    }
+
+                    if (nameColumnIndex != -1) {
+                        String nome = cursor.getString(nameColumnIndex);
+                        resultString.append("NOME: ").append(nome).append("\n");
+                        Log.d(TAG, "NOME: " + nome);
                     }
 
                     if (valueColumnIndex != -1) {
@@ -96,16 +107,13 @@ public class Databasepiggy extends SQLiteOpenHelper {
                     }
 
 
-
-                    if (nameColumnIndex != -1) {
-                        String name = cursor.getString(nameColumnIndex);
-                        resultString.append("Nome: ").append(name).append("\n");
-                        Log.d(TAG, "NOME: " + name);
+                    if (typeColumnIndex != -1) {
+                        String tipo = cursor.getString(typeColumnIndex);
+                        resultString.append("TIPO: ").append(tipo).append("\n");
+                        Log.d(TAG, "TIPO: " + tipo);
                     } else {
                         Log.d(TAG, "Coluna 'type_movement' não encontrada");
                     }
-
-
 
                     if (dateColumnIndex != -1) {
                         String date = cursor.getString(dateColumnIndex);

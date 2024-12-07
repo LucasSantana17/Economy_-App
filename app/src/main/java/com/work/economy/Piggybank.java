@@ -1,24 +1,24 @@
 package com.work.economy;
+import android.content.Context;
 import android.util.Log;
 import com.work.economy.Databasepiggy;
+
 public class Piggybank {
 
     private static final String TAG = "Piggybank";
 
-    private double userAccount = 0;
-    private double inputValue;
+    private String nameValue;
     private double outputValue;
-    private String typeValue;
+    private double inputValue;
+    private double userAccount = 0;
+
+    private boolean typeValue;
 
     public Piggybank(){
     }
 
     public double getUserAccount() {
         return userAccount;
-    }
-
-    public void setUserAccount(double userAccount) {
-        this.userAccount = userAccount;
     }
 
     public double getInputValue() {
@@ -37,26 +37,35 @@ public class Piggybank {
         this.outputValue = outputValue;
     }
 
-    public String getTypeValue() {
+    public boolean getTypeValue() {
         return typeValue;
     }
 
-    public void setTypeValue(String typeValue) {
+    public void setTypeValue(boolean typeValue) {
         this.typeValue = typeValue;
     }
 
+    public String getNameValue() {
+        return nameValue;
+    }
+
+    public void setNameValue(String nameValue) {
+        this.nameValue = nameValue;
+    }
 
     //  # A intenção é que apartir desse método aconteça uma chamada para o banco de dados
-    public void accountEntry(String nameValue, double inputValue){ // Metodo de entrada na conta
+    public void accountEntry(String nameValue, double inputValue, boolean typeValue){ // Metodo de entrada na conta
         this.userAccount = userAccount + inputValue;
 
-        Log.d(TAG,"valor adicionado referente a "+nameValue+": "+ inputValue+" Valor atual: "+ getUserAccount());
+        Log.d(TAG,"Movimetações: "+
+                "| Nome = "+nameValue+
+                "| Valor = "+inputValue+
+                "| Tipo = "+typeValue+" |");
     }
 
     public void accountExit(String nameValue, double outputValue){ // Metodo de saida da conta
         this.userAccount = userAccount - outputValue;
-        this.typeValue = nameValue;
-        Log.d(TAG,"valor retirado referente a "+nameValue+": "+ outputValue + " Valor atual: "+getUserAccount());
+        Log.d(TAG,"valor retirado referente a "+nameValue+": "+ outputValue + " Valor atual: "+getUserAccount()+" tipo de valor: "+getTypeValue());
     }
 
 
