@@ -22,6 +22,7 @@
         app:layout_constraintVertical_bias="0.025"
         tools:ignore="MissingConstraints"></TextView>
 
+
     <EditText
         android:id="@+id/nameValue"
         android:layout_width="250dp"
@@ -32,37 +33,20 @@
         app:layout_constraintHorizontal_bias="0.099"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.225"></EditText>
+        app:layout_constraintVertical_bias="0.263"></EditText>
 
     <EditText
         android:id="@+id/inputValue"
         android:layout_width="250dp"
         android:layout_height="48dp"
-        android:hint="+$ Valor de Entrada"
+        android:hint="$ Valor"
         android:inputType="number"
-        android:textColorHint="#2BCC32"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.099"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.341"></EditText>
-
-
-    <EditText
-        android:id="@+id/outputValue"
-        android:layout_width="250dp"
-        android:layout_height="48dp"
-        android:hint="-$ Valor de Saida"
-        android:inputType="number"
-        android:textColorHint="#CD0808"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.099"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.456"></EditText>
-
+        app:layout_constraintVertical_bias="0.363"></EditText>
 
     <Button
         android:id="@+id/inputButton"
@@ -75,7 +59,7 @@
         app:layout_constraintHorizontal_bias="0.051"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.653"></Button>
+        app:layout_constraintVertical_bias="0.621"></Button>
 
     <Button
         android:id="@+id/btn_consultation"
@@ -85,10 +69,22 @@
         android:textColorHint="#F8F6F6"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.771"
+        app:layout_constraintHorizontal_bias="0.051"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.863"></Button>
+        app:layout_constraintVertical_bias="0.76"></Button>
+
+    <Spinner
+        android:id="@+id/spinnerSelect"
+        android:layout_width="144dp"
+        android:layout_height="34dp"
+        android:background="@drawable/spinner_style"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.059"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.499" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

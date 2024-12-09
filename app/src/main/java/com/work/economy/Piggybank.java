@@ -8,11 +8,9 @@ public class Piggybank {
     private static final String TAG = "Piggybank";
 
     private String nameValue;
-    private double outputValue;
     private double inputValue;
     private double userAccount = 0;
-
-    private boolean typeValue;
+    private boolean typeValue; // Esse valor será o responsavel sobre a adição ou substração da conta
 
     public Piggybank(){
     }
@@ -27,14 +25,6 @@ public class Piggybank {
 
     public void setInputValue(double inputValue) {
         this.inputValue = inputValue;
-    }
-
-    public double getOutputValue() {
-        return outputValue;
-    }
-
-    public void setOutputValue(double outputValue) {
-        this.outputValue = outputValue;
     }
 
     public boolean getTypeValue() {
@@ -62,15 +52,5 @@ public class Piggybank {
                 "| Valor = "+inputValue+
                 "| Tipo = "+typeValue+" |");
     }
-
-    public void accountExit(String nameValue, double outputValue){ // Metodo de saida da conta
-        this.userAccount = userAccount - outputValue;
-        Log.d(TAG,"valor retirado referente a "+nameValue+": "+ outputValue + " Valor atual: "+getUserAccount()+" tipo de valor: "+getTypeValue());
-    }
-
-
-
-    // Criar uma forma de verificar se o valor é uma adição na conta ou uma subtração
-
 
 }
